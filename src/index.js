@@ -14,7 +14,6 @@ const username = process.env.USERNAME,
       db = process.env.DB,
       port = process.env.PORT;
 
-
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.uoup6yr.mongodb.net/${db}?retryWrites=true&w=majority`)
   .then(() => {
     console.log("Server Run!");
