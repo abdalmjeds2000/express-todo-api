@@ -22,8 +22,15 @@ const TaskSchema = new Schema({
   CreatedAt: {
     type: Date,
   },
+  CreatedAt: {
+    type: Date,
+  },
   UpdatedAt: {
     type: Date,
+  },
+  creatorId: {
+    type: String,
+    required: true, 
   },
 });
 

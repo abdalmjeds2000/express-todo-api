@@ -10,7 +10,16 @@ module.exports = async (req, res) => {
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   !isPasswordValid && res.status(200).send({ status: "error", message: "Username or Password Wrong!" });
-
-  const token = jwt.sign({id: user._id, username: user.username, fullname:user.fullname, email: user.mail, IsAdmin: user.IsAdmin}, secret);
+  
+  const token = jwt.sign({
+    id: user._id, 
+    fullname:user.fullname, 
+    username: user.username, 
+    email: user.mail, 
+    country: user.country, 
+    phone: user.phone, 
+    IsAdmin: user.IsAdmin,
+    age: user.age,
+  }, secret);
   return res.status(200).send({ status: "success", message: `Welcome ${username}`, token, userID: user._id});
 }

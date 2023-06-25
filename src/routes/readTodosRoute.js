@@ -1,7 +1,10 @@
 const TodoModel = require('../models/TodoModel');
+const jwtDecode = require('jwt-decode');
 
 module.exports = async (req, res) => {
-  const todos = await TodoModel.find();
+  const token = req.headers.authorization.split(" ")[1];
 
-  res.json(todos)
+  const { id } = jwtDecode(token);
+  const todos = await TodoModel.find({ creatorId: id });
+  res.json(todos);
 }
